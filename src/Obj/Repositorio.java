@@ -20,7 +20,7 @@ public class Repositorio {
     
     public int gitInit(String p_Nombre, String p_Autor)
     {
-        if(p_Nombre !="" && p_Autor !="")
+        if(!p_Nombre.equals("") && !p_Autor.equals(""))
         {
             this._Nombre = p_Nombre;
             this._Autor= p_Autor;

@@ -23,22 +23,80 @@ public class Laboratorio3UsachCl {
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
         Repositorio repositorio = new Repositorio();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String opcion = "";
+        
         System.out.println("Para Inicar la Aplicación debe Crear un Repositorio");
+        System.out.println("Función \"gitInit\"");
         String nombre = "";
         String autor ="";
+        
         while(nombre.equals("") && autor.equals(""))
         {
             System.out.print("Ingrese su nombre:");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             autor = reader.readLine();
 
-            System.out.println("Ingrese el nombre del Reporitorio:");
+            System.out.print("Ingrese el nombre del Reporitorio:");
             nombre = reader.readLine();
         }
         int resultado = repositorio.gitInit(nombre, autor);
+        if(resultado>0)
+        {
+            System.out.println("Repositorio creado: Directorios:");
+            repositorio._ListaZonasDeTrabajo.stream().forEach((p)-> {
+                System.out.println(p.NombreZonaDeTrabajo.name());
+            });
+        }else       
+        {
+            System.out.print("Ha ocurrido un problema al iniciar el repositorio");
+        }
         
-       repositorio._ListaZonasDeTrabajo.stream().forEach((p)-> {
-            System.out.println(p.NombreZonaDeTrabajo.name());
-        });
+        while(opcion != "7")
+        {
+            System.out.println("### SIMULACIÓN DE GIT ###");
+            System.out.println("Escoja su opción:");
+            System.out.println("1. add");
+            System.out.println("2. commit");
+            System.out.println("3. pull");
+            System.out.println("4. push");
+            System.out.println("5. status");
+            System.out.println("6. Crear nuevo archivo");
+            System.out.println("7. Salir");
+            System.out.println("INTRODUZCA SU OPCIÓN: _");
+            
+            opcion = reader.readLine();
+            
+            int result =0;
+            try {
+                result = Integer.parseInt(opcion); 
+            } 
+            catch (Exception e){ 
+                System.err.println("Debe ingresar un número"); 
+            }
+
+            switch (result) {
+              case 1:
+                System.out.println("Monday");
+                break;
+              case 2:
+                System.out.println("Tuesday");
+                break;
+              case 3:
+                System.out.println("Wednesday");
+                break;
+              case 4:
+                System.out.println("Thursday");
+                break;
+              case 5:
+                System.out.println("Friday");
+                break;
+              case 6:
+                System.out.println("Saturday");
+                break;
+              case 7:
+                System.out.println("Sunday");
+                break;
+            }
+        }
     }
 }
